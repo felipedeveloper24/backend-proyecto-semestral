@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('traspasos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("tras_cd_origen");
+            $table->foreign("tras_cd_origen")->
+            references("id")->
+            on("centro_distribucions")->
+            cascadeOnUpdate()->
+            cascadeOnDelete();
+            $table-> unsignedBigInteger("tras_cd_destino")->nullable();
+            $table-> foreign("tras_cd_destino")->
+            references("id")->
+            on("centro_distribucions")->
+            cascadeOnDelete()->
+            cascadeOnUpdate();
+            $table->string("estado")->nullable();
             $table->timestamps();
         });
     }

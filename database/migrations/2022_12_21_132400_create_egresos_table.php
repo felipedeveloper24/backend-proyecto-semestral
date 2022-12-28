@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('egresos', function (Blueprint $table) {
             $table->id();
+            $table->date("egre_fecha");
+            $table->unsignedInteger("egre_centro_dist")->nullable();
+            $table->foreign("egre_centro_dist")->references("id")->on("centro_distribucions")
+            ->cascadeOnDelete()->cascadeOnUpdate();
+            
+            $table->unsignedBigInteger("egre_farmacia_id");
+            $table->foreign("egre_farmacia_id")->references("id")
+            ->on("farmacias")->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

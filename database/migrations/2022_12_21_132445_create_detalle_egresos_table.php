@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('detalle_egresos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("id_medicamento")->nullable();
+            $table->foreign("id_medicamento")->references("id")->on("medicamentos")
+            ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer("det_egr_cantidad");
+            $table->integer("det_egr_lote");
+            $table->unsignedBigInteger("det_egreso_id");
+            $table->foreign("det_egreso_id")->references("id")->on("egresos")
+            ->cascadeOnUpdate()->cascadeOnDelete();
+            
             $table->timestamps();
         });
     }

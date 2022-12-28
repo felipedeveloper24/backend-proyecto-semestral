@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
+            $table->date("ingr_fecha");
+            $table->unsignedBigInteger("ingr_centro_dist")->nullable();
+            $table->foreign("ingr_centro_dist")->references("id")->on("centro_distribucions")
+            ->cascadeOnUpdate()->cascadeOnDelete();
+            
             $table->timestamps();
         });
     }
