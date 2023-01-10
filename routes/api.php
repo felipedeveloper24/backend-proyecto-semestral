@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CentroDistribucionController;
 use App\Http\Controllers\FarmaciaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,9 @@ Route::prefix("farmacia")->controller(FarmaciaController::class)->group(function
     Route::delete("/delete","eliminar_farmacia");
 });
 
+Route::prefix("centro")->controller(CentroDistribucionController::class)->group(function(){
+    Route::get("/all","listar_centros");
+    Route::post("/create","crear_centro");
+    Route::put("/update","actualizar_centro");
+    Route::delete("/delete","eliminar_centro");
+});

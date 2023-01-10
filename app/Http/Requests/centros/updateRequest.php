@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\farmacia;
+namespace App\Http\Requests\centros;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
-
-class insertRequest extends FormRequest
+class updateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,9 @@ class insertRequest extends FormRequest
     public function rules()
     {
         return [
-            "farm_nombre"=>"required|string|unique:farmacias,farm_nombre",
-            "farm_direccion"=>"required|string|unique:farmacias,farm_direccion",
-            "farm_mail"=> "required|email|unique:farmacias,farm_mail"
+            "id"=>"required|integer|exists:centro_distribucions,id",
+            "cd_direccion"=>"string|unique:centro_distribucions,cd_direccion",
+            "cd_telefono"=>"integer"
         ];
     }
     public function messages()
@@ -56,5 +56,4 @@ class insertRequest extends FormRequest
             response()->json($validator->errors()->all(), Response::HTTP_BAD_REQUEST)
         );
     }
-
 }

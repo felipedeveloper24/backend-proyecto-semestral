@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('centro_distribucions', function (Blueprint $table) {
             $table->id();
             $table->integer("cd_codigo")->nullable();
-            $table->integer("cd_direccion");
+            $table->string("cd_direccion");
             $table->integer("cd_telefono");
             $table->timestamps();
         });

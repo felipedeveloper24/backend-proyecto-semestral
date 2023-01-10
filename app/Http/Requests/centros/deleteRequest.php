@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Requests\farmacia;
+namespace App\Http\Requests\centros;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Response;
 
-class insertRequest extends FormRequest
+class deleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +24,7 @@ class insertRequest extends FormRequest
     public function rules()
     {
         return [
-            "farm_nombre"=>"required|string|unique:farmacias,farm_nombre",
-            "farm_direccion"=>"required|string|unique:farmacias,farm_direccion",
-            "farm_mail"=> "required|email|unique:farmacias,farm_mail"
+            "id"=>"required|exists:centro_distribucions,id|integer"
         ];
     }
     public function messages()
@@ -50,11 +45,4 @@ class insertRequest extends FormRequest
             'array' => 'El campo :attribute debe ser de tipo array'
         ];
     }
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json($validator->errors()->all(), Response::HTTP_BAD_REQUEST)
-        );
-    }
-
 }

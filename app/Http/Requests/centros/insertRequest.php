@@ -1,12 +1,9 @@
 <?php
-
-namespace App\Http\Requests\farmacia;
-
+namespace App\Http\Requests\centros;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
-
 class insertRequest extends FormRequest
 {
     /**
@@ -27,9 +24,9 @@ class insertRequest extends FormRequest
     public function rules()
     {
         return [
-            "farm_nombre"=>"required|string|unique:farmacias,farm_nombre",
-            "farm_direccion"=>"required|string|unique:farmacias,farm_direccion",
-            "farm_mail"=> "required|email|unique:farmacias,farm_mail"
+            "cd_codigo"=> "required|integer|unique:centro_distribucions,cd_codigo",
+            "cd_direccion"=>"required|string|unique:centro_distribucions,cd_direccion",
+            "cd_telefono"=>"required|integer"
         ];
     }
     public function messages()

@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Log;
 
 class FarmaciaRepository{
     public function listar_farmacias(){
-
+        if(farmacia::all()->count()!=0){
+            return response( farmacia::all(),200);
+        }
         return response()->json([
-            "farmacias"=> farmacia::all()
-        ],200);
-
+            "mensaje"=>"No hay registros"
+        ],400);
     }
     public function crear_farmacia($request){
         $farmacia = new farmacia();
