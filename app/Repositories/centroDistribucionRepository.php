@@ -48,14 +48,19 @@ class CentroDistribucionRepository{
 
     }
     public function eliminar_centro($request){
-       // try{
+        Log::info(["data"=>$request->id]);
+        return response()->json([
+            "data"=>$request->id],200);
+        /*
+         try{
+            Log::info(["data"=>$request->id]);
             $centro = centro_distribucion::find($request->id);
             if(empty($centro)){
                 return response()->json(["No se ha encontrado el centro",400]);
             }
             return response()->json(["Centro"=>$centro]);
             Log::info(["Centro"=>$centro]);
-        /*
+
             if($centro->count()!=0){
                 $centro->delete();
                 return response()->json(["mensaje"=>"Centro de distribucion eliminado correctamente"],200);
@@ -66,6 +71,7 @@ class CentroDistribucionRepository{
             return response()->json(["mensaje"=>"Error al eliminar".$e->getMessage()],400);
         }
         */
+
     }
 }
 

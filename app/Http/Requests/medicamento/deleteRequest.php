@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Requests\centros;
+namespace App\Http\Requests\medicamento;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 
 class deleteRequest extends FormRequest
 {
@@ -24,7 +27,7 @@ class deleteRequest extends FormRequest
     public function rules()
     {
         return [
-            "id"=>"required|integer|exists:centro_distribucions,id"
+            "id"=>"required|integer|exists:medicamentos,id"
         ];
     }
     public function messages()
@@ -45,4 +48,11 @@ class deleteRequest extends FormRequest
             'array' => 'El campo :attribute debe ser de tipo array'
         ];
     }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json($validator->errors()->all(), Response::HTTP_BAD_REQUEST)
+        );
+    }
+
 }

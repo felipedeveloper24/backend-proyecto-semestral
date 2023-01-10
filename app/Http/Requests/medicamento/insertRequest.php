@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\centros;
-
+namespace App\Http\Requests\medicamento;
 use Illuminate\Foundation\Http\FormRequest;
-
-class deleteRequest extends FormRequest
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
+class insertRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,8 @@ class deleteRequest extends FormRequest
     public function rules()
     {
         return [
-            "id"=>"required|integer|exists:centro_distribucions,id"
+            "med_nombre"=>"required|string",
+            "med_compuesto"=>"required|string"
         ];
     }
     public function messages()
@@ -44,5 +46,11 @@ class deleteRequest extends FormRequest
             'max' => 'El campo :attribute supera el largo máximo permitido',
             'array' => 'El campo :attribute debe ser de tipo array'
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json($validator->errors()->all(), Response::HTTP_BAD_REQUEST)
+        );
     }
 }

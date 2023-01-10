@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CentroDistribucionController;
 use App\Http\Controllers\FarmaciaController;
+use App\Http\Controllers\medicamentoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,10 @@ Route::prefix("centro")->controller(CentroDistribucionController::class)->group(
     Route::post("/create","crear_centro");
     Route::put("/update","actualizar_centro");
     Route::delete("/delete","eliminar_centro");
+});
+Route::prefix("medicamento")->controller(medicamentoController::class)->group(function(){
+    Route::get("/all","listar_medicamentos");
+    Route::post("/create","crear_medicamento");
+    Route::put("/update","actualizar_medicamento");
+    Route::delete("/delete","eliminar_medicamento");
 });
