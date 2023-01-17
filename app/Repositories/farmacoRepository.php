@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Log;
                 "mensaje"=> "No hay farmacos registrados en la base de datos"
             ],200);
         }
+        public function mostrar_medicamento($id){
+            $medicamento = medicamento::find($id);
+            if(!empty($medicamento)){
+                return response([$medicamento],200);
+            }
+            return response(["mensaje"=>"No existe ese medicamento"],200);
+        }
         public function crear_medicamento($request){
             $medicamento = new medicamento();
             $medicamento->med_nombre = $request-> med_nombre;

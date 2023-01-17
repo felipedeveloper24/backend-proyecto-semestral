@@ -18,6 +18,9 @@ class medicamentoController extends Controller
     public function listar_medicamentos(){
         return $this->repo->listar_medicamentos();
     }
+    public function mostrar_medicamento($id){
+        return $this->repo->mostrar_medicamento($id);
+    }
     public function crear_medicamento(insertRequest $request){
         return $this->repo->crear_medicamento($request);
     }

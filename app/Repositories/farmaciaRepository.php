@@ -13,7 +13,14 @@ class FarmaciaRepository{
         }
         return response()->json([
             "mensaje"=>"No hay registros"
-        ],400);
+        ],200);
+    }
+    public function mostrar_farmacia($id){
+        $farmacia = farmacia::find($id);
+        if(!empty($farmacia)){
+            return response([$farmacia],200);
+        }
+        return response(["mensaje"=>"No existe esa farmacia"],200);
     }
     public function crear_farmacia($request){
         $farmacia = new farmacia();

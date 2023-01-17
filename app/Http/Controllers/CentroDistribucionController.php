@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\centros\deleteRequest;
 use App\Http\Requests\centros\insertRequest;
 use App\Http\Requests\centros\updateRequest;
+use App\Http\Requests\Stock\stockRequest;
 use App\Repositories\CentroDistribucionRepository;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,9 @@ class CentroDistribucionController extends Controller
     public function listar_centros(){
         return $this-> repo_centro->listar_centros();
     }
+    public function mostrar_centro($id){
+        return $this-> repo_centro->mostrar_centro($id);
+    }
     public function crear_centro(insertRequest $request){
         return $this-> repo_centro->crear_centro($request);
     }
@@ -25,6 +29,12 @@ class CentroDistribucionController extends Controller
     }
     public function eliminar_centro(deleteRequest $request){
         return $this->repo_centro->eliminar_centro($request);
+    }
+    public function asignarStock(stockRequest $request){
+        return $this->repo_centro->asignarStock($request);
+    }
+    public function mostrarStock($id){
+        return $this->repo_centro->mostrarStock($id);
     }
 
 }

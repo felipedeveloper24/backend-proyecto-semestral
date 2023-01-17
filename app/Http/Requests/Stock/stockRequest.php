@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\farmacia;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
-class updateRequest extends FormRequest
+class stockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,10 @@ class updateRequest extends FormRequest
     public function rules()
     {
         return [
-            "id"=>"required|integer|exists:farmacias,id",
-            "farm_nombre"=>"string",
-            "farm_direccion"=>"string",
-            "farm_mail"=> "email"
+            "scd_id_medicamento"=>"required|integer|exists:medicamentos,id",
+            "scd_cantidad"=>"required|integer",
+            "scd_centro_dist"=>"required|integer|exists:centro_distribucions,id",
+            "scd_lote"=>"required|integer"
         ];
     }
     public function messages()

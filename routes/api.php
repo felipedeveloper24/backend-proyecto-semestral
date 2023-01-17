@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix("farmacia")->controller(FarmaciaController::class)->group(function(){
     Route::get("/all","listar_farmacias");
+    Route::get('/show/{id}',"mostrar_farmacia");
     Route::post("/create","crear_farmacia");
     Route::put("/update","actualizar_farmacia");
     Route::delete("/delete","eliminar_farmacia");
@@ -30,13 +31,18 @@ Route::prefix("farmacia")->controller(FarmaciaController::class)->group(function
 
 Route::prefix("centro")->controller(CentroDistribucionController::class)->group(function(){
     Route::get("/all","listar_centros");
+    Route::get("/show/{id}","mostrar_centro");
+    Route::get("showStock/{id}","mostrarStock");
     Route::post("/create","crear_centro");
     Route::put("/update","actualizar_centro");
     Route::delete("/delete","eliminar_centro");
+    Route::post("/stock","asignarStock");
 });
 Route::prefix("medicamento")->controller(medicamentoController::class)->group(function(){
+    Route::get("/show/{id}","mostrar_medicamento");
     Route::get("/all","listar_medicamentos");
     Route::post("/create","crear_medicamento");
     Route::put("/update","actualizar_medicamento");
     Route::delete("/delete","eliminar_medicamento");
+
 });

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("scd_id_medicamento")->nullable();
-            $table-> foreign("scd_id_medicamento") 
+            $table-> foreign("scd_id_medicamento")
             -> references("id")
             ->on("medicamentos")
             ->cascadeOnDelete()->cascadeOnUpdate();
@@ -27,7 +27,7 @@ return new class extends Migration
             ->on("centro_distribucions")
             ->cascadeOnUpdate()
             ->cascadeOnDelete();
-            
+            $table -> integer("scd_lote");
             $table->timestamps();
         });
     }

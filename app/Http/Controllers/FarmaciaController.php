@@ -18,6 +18,9 @@ class FarmaciaController extends Controller
     public function listar_farmacias(){
         return $this->farmaciarepo->listar_farmacias();
     }
+    public function mostrar_farmacia($id){
+        return $this->farmaciarepo->mostrar_farmacia($id);
+    }
     public function crear_farmacia(insertRequest $request){
         return $this->farmaciarepo->crear_farmacia($request);
     }
